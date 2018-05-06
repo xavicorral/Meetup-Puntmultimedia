@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Configuració</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Idioma</ion-label>
+    <ion-select [(ngModel)]="idioma">
+      <ion-option value="ca">Català</ion-option>
+      <ion-option value="es">Castellano</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-content>

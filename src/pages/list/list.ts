@@ -1,37 +1,39 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { NavController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
+import { DetallProfessorPage } from "../detall-professor/detall-professor";
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+    coordinadors: [{nombre: string, apellido: string, genere: string}];
+    professors: [{nombre: string, apellido: string, genere: string}];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+    this.coordinadors = [
+        {nombre: 'Oriol', apellido: 'Blas', genere: 'H'},
+        {nombre: 'Belén', apellido: 'Fernández', genere: 'M'}
+    ];
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+    this.professors = [
+        {nombre: 'Xavi', apellido: 'Corral', genere: 'H'}
+    ];
+
+  }
+
+  contactoClicked(professor) {
+    console.log(professor);
+    this.navCtrl.push(DetallProfessorPage, {detallProfessor: professor})
+      /*let toast = this.toastCtrl.create({
+          message: 'Has clicat al professor: ' + professor.nombre,
+          position : 'middle',
+          duration: 5000,
+          showCloseButton: true
       });
-    }
+      toast.present();
+      */
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
 }

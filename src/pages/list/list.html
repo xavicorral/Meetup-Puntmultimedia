@@ -3,21 +3,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Llista de professors</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding="">
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-item-group>
+      <ion-item-divider color="light">Coordinadors</ion-item-divider>
+      <ion-item detail-push *ngFor="let coordinador of coordinadors" (click)="contactoClicked(coordinador)">
+        <strong>{{ coordinador.nombre }}</strong> {{ coordinador.apellido }}
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="light">Professors</ion-item-divider>
+      <ion-item detail-push *ngFor="let professor of professors" (click)="contactoClicked(professor)">
+        <strong>{{ professor.nombre }}</strong> {{ professor.apellido }}
+      </ion-item>
+    </ion-item-group>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
